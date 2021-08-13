@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
-import {createStore} from "redux"; //i can use combineReducers in order to add multiple reducers in a single store 
-import allReducers from "./Reducers/index";
+import {createStore,combineReducers} from 'redux';//combine reducers in order to add multiple reducers in a single store
+import allReducers from "./Reducers/index"
+import {Provider} from "react-redux";
 
+const store=createStore(allReducers,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
-const store =createstore(allReducers)
 
 
 ReactDOM.render(
+  <Provider store={store}>
   <React.StrictMode>
     <App />
   </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
-
-
